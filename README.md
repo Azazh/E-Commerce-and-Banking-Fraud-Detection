@@ -196,4 +196,3 @@ For any questions or feedback, please contact:
 
 ---
 
-This README provides an overview of the project and serves as a guide for setting up, running, and contributing to the fraud detection system. We hope this repository helps you build robust and transparent fraud detection solutions!
