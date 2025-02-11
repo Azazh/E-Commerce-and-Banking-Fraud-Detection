@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/bf51dca8d39f4290a5a93b5d6d79efdb/artifacts
+end_time: 1739287139377
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: bf51dca8d39f4290a5a93b5d6d79efdb
+run_name: Gradient Boosting_Fraud_Data
+run_uuid: bf51dca8d39f4290a5a93b5d6d79efdb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739287113551
+status: 3
+tags: []
+user_id: azazh

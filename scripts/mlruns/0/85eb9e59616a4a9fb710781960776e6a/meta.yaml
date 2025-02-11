@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/85eb9e59616a4a9fb710781960776e6a/artifacts
+end_time: 1739287082633
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 85eb9e59616a4a9fb710781960776e6a
+run_name: Decision Tree_Fraud_Data
+run_uuid: 85eb9e59616a4a9fb710781960776e6a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739287078539
+status: 3
+tags: []
+user_id: azazh

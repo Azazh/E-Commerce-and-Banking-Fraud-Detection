@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/6f8ba71f1908449c962e02f63be6b542/artifacts
+end_time: 1739266649100
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6f8ba71f1908449c962e02f63be6b542
+run_name: suave-rat-250
+run_uuid: 6f8ba71f1908449c962e02f63be6b542
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739266647186
+status: 3
+tags: []
+user_id: azazh

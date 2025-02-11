@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/74292586f17a470c9ca1d882752d74fb/artifacts
+end_time: 1739287142468
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 74292586f17a470c9ca1d882752d74fb
+run_name: XGBoost_Fraud_Data
+run_uuid: 74292586f17a470c9ca1d882752d74fb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739287139386
+status: 3
+tags: []
+user_id: azazh

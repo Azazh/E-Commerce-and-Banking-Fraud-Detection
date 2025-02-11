@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/50c77424a4b143178052938b1a5a930e/artifacts
+end_time: 1739264453563
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 50c77424a4b143178052938b1a5a930e
+run_name: flawless-cub-800
+run_uuid: 50c77424a4b143178052938b1a5a930e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739264451633
+status: 4
+tags: []
+user_id: azazh

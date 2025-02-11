@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/93c919ecf4484bb5ad9f3c248b182c25/artifacts
+end_time: 1739264208189
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 93c919ecf4484bb5ad9f3c248b182c25
+run_name: colorful-shrimp-671
+run_uuid: 93c919ecf4484bb5ad9f3c248b182c25
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739264206089
+status: 4
+tags: []
+user_id: azazh

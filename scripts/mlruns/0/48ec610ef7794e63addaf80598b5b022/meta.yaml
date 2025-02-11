@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/48ec610ef7794e63addaf80598b5b022/artifacts
+end_time: 1739266219742
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 48ec610ef7794e63addaf80598b5b022
+run_name: rare-pug-890
+run_uuid: 48ec610ef7794e63addaf80598b5b022
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739266217492
+status: 3
+tags: []
+user_id: azazh

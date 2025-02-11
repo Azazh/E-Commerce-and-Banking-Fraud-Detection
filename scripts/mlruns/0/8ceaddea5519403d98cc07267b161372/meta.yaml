@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/8ceaddea5519403d98cc07267b161372/artifacts
+end_time: 1739279037713
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8ceaddea5519403d98cc07267b161372
+run_name: Logistic Regression_Fraud_Data
+run_uuid: 8ceaddea5519403d98cc07267b161372
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739279037677
+status: 4
+tags: []
+user_id: azazh

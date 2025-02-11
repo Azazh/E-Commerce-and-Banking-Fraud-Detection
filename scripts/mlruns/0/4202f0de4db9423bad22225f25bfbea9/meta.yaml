@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/4202f0de4db9423bad22225f25bfbea9/artifacts
+end_time: 1739286935586
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4202f0de4db9423bad22225f25bfbea9
+run_name: Random Forest_Fraud_Data
+run_uuid: 4202f0de4db9423bad22225f25bfbea9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739286911489
+status: 3
+tags: []
+user_id: azazh
