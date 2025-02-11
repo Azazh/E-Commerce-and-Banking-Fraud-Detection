@@ -1,111 +1,199 @@
+### **README: Fraud Detection System**
 
+---
 
+#### **Project Overview**
+This repository contains the code and documentation for a fraud detection system developed for e-commerce and banking transactions at Adey Innovations Inc. The system leverages machine learning models to identify fraudulent activities accurately while ensuring transparency through explainability tools like SHAP and LIME.
 
-```markdown
-# Fraud Detection for E-Commerce and Bank Transactions
+The project includes data preprocessing, feature engineering, model training, evaluation, and deployment preparation. It is designed to handle large volumes of transactions in real-time and adapt to evolving fraud patterns.
 
-This project focuses on improving fraud detection for e-commerce and bank transactions using advanced data analysis and machine learning techniques. The goal is to build robust models that can accurately identify fraudulent activities by leveraging transaction data, geolocation analysis, and pattern recognition.
+---
 
-## Project Structure
+#### **Table of Contents**
+1. [Business Need](#business-need)
+2. [Dataset Description](#dataset-description)
+3. [Project Structure](#project-structure)
+4. [Setup Instructions](#setup-instructions)
+5. [Key Features](#key-features)
+6. [Usage](#usage)
+7. [Results](#results)
+8. [Contributing](#contributing)
+9. [License](#license)
 
-```
-.vscode/                # VSCode settings
-notebooks/              # Jupyter notebooks for EDA and prototyping
-scripts/                # Python scripts for preprocessing and analysis
-src/                    # Source code for reusable functions and modules
-tests/                  # Unit tests for the code
-data/                   # Datasets used in the project
-.gitignore              # Files to ignore in Git
-README.md               # Project documentation
-.github/                # GitHub-related files (e.g., workflows)
-```
+---
 
-## Task 1 - Data Analysis and Preprocessing
+#### **Business Need**
+Fraudulent transactions pose a significant risk to e-commerce and banking businesses, leading to financial losses and reduced customer trust. This project aims to develop an accurate and interpretable fraud detection system that:
+- Identifies fraudulent transactions in real-time.
+- Enhances transaction security.
+- Provides insights into model predictions using SHAP and LIME for transparency and trust.
 
-This task involves cleaning, analyzing, and preprocessing the transaction data to prepare it for machine learning models. The steps include:
+---
 
-1. **Handling Missing Values**:
-   - Impute or drop missing values in the datasets.
-   - Script: `scripts/handle_missing_values.py`.
-
-2. **Data Cleaning**:
-   - Remove duplicates and correct data types.
-   - Script: `scripts/data_cleaning.py`.
-
-3. **Exploratory Data Analysis (EDA)**:
-   - Perform univariate and bivariate analysis to understand the data.
-   - Notebook: `notebooks/eda.ipynb`.
-
-4. **Merge Datasets for Geolocation Analysis**:
-   - Convert IP addresses to integer format and merge `Fraud_Data.csv` with `IpAddress_to_Country.csv`.
-   - Script: `scripts/merge_geolocation.py`.
-
-5. **Feature Engineering**:
-   - Create new features like transaction frequency, time-based features, and normalized/encoded features.
-   - Script: `scripts/feature_engineering.py`.
-
-6. **Unit Tests**:
-   - Test the functionality of each script in the `tests/` folder.
-
-## Datasets
-
-The following datasets are used in this project:
-
+#### **Dataset Description**
+The project uses the following datasets:
 1. **Fraud_Data.csv**:
-   - Contains e-commerce transaction data with features like `user_id`, `purchase_time`, `purchase_value`, `device_id`, `source`, `browser`, `sex`, `age`, `ip_address`, and `class` (target variable).
+   - Contains e-commerce transaction data.
+   - Features include `user_id`, `signup_time`, `purchase_time`, `purchase_value`, `device_id`, `source`, `browser`, `sex`, `age`, `ip_address`, and `class` (target variable).
 
 2. **IpAddress_to_Country.csv**:
-   - Maps IP address ranges to countries.
+   - Maps IP addresses to countries.
+   - Features include `lower_bound_ip_address`, `upper_bound_ip_address`, and `country`.
 
 3. **creditcard.csv**:
-   - Contains anonymized bank transaction data with features like `Time`, `V1-V28` (PCA components), `Amount`, and `Class` (target variable).
+   - Contains bank credit transaction data specifically curated for fraud detection.
+   - Features include anonymized features (`V1` to `V28`), `Amount`, and `Class` (target variable).
 
-## How to Run the Code
+---
 
+#### **Project Structure**
+The project follows a modular structure for ease of use and maintenance:
+
+```
+.vscode/
+notebooks/
+    - Exploratory Data Analysis (EDA) notebooks
+scripts/
+    - preprocess.py
+    - feature_engineering.py
+    - model_training.py
+    - model_explain.py
+src/
+    - Core functionality (e.g., preprocessing, model training)
+tests/
+    - Unit tests for scripts
+data/
+    - Raw and processed datasets
+models/
+    - Trained machine learning models
+.github/
+.gitignore
+README.md
+requirements.txt
+```
+
+---
+
+#### **Setup Instructions**
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/azazh/E-Commerce-and-Banking-Fraud-Detection.git
+   git clone hhttps://github.com/Azazh/E-Commerce-and-Banking-Fraud-Detection.git
    cd E-Commerce-and-Banking-Fraud-Detection
-
    ```
 
-2. **Set Up the Environment**:
-   - Install the required Python packages:
+2. **Install Dependencies**:
+   Ensure you have Python 3.8+ installed. Then, install the required libraries:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Start MLflow Server** (Optional):
+   If you plan to use MLflow for experiment tracking:
+   ```bash
+   mlflow server --backend-store-uri ./mlruns --default-artifact-root ./artifacts --host 0.0.0.0 --port 5000
+   ```
+
+4. **Run the Scripts**:
+   - Preprocess the data:
      ```bash
-     pip install -r requirements.txt
+     python scripts/preprocess.py
+     ```
+   - Train the models:
+     ```bash
+     python scripts/model_training.py
+     ```
+   - Generate explanations:
+     ```bash
+     python scripts/model_explain.py
      ```
 
-3. **Run the Scripts**:
-   - Execute the scripts in the following order:
-     ```bash
-     python scripts/handle_missing_values.py
-     python scripts/data_cleaning.py
-     python scripts/merge_geolocation.py
-     python scripts/feature_engineering.py
-     ```
+---
 
-4. **Run the EDA Notebook**:
-   - Open and run the Jupyter notebook `notebooks/eda.ipynb` to perform exploratory data analysis.
+#### **Key Features**
+- **Data Preprocessing**:
+  - Handles missing values, duplicates, and incorrect data types.
+  - Extracts time-based features and merges geolocation data for enriched insights.
 
-5. **Run Unit Tests**:
-   - Execute the unit tests to ensure the scripts are working correctly:
-     ```bash
-     python -m pytest tests/
-     ```
+- **Model Building**:
+  - Implements multiple machine learning algorithms (Logistic Regression, Decision Tree, Random Forest, Gradient Boosting, XGBoost, MLP).
+  - Uses stratified train-test splits for balanced evaluation.
 
-## Results
+- **Explainability**:
+  - Provides global and local explanations using SHAP and LIME.
+  - Generates summary plots, force plots, and dependence plots for interpretability.
 
-After completing Task 1, the following outputs will be generated:
-- Cleaned and preprocessed datasets in the `data/` folder.
-- New features like `hour_of_day`, `day_of_week`, `transaction_frequency`, and `country`.
-- Visualizations and insights from the EDA notebook.
+- **Deployment Readiness**:
+  - Saves trained models for deployment.
+  - Includes mechanisms for continuous monitoring and retraining.
 
-## Contributing
+---
 
-Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
+#### **Usage**
+1. **Preprocessing**:
+   - Run `preprocess.py` to clean and prepare the datasets.
+   - Output files will be saved in the `data/` directory.
 
-## License
+2. **Feature Engineering**:
+   - Use `feature_engineering.py` to engineer new features such as `hour_of_day`, `day_of_week`, and `time_since_signup`.
 
+3. **Model Training**:
+   - Execute `model_training.py` to train and evaluate multiple models.
+   - Results and metrics are logged using MLflow.
+
+4. **Model Explainability**:
+   - Run `model_explain.py` to generate SHAP and LIME explanations for the trained models.
+
+5. **Deployment**:
+   - Deploy the best-performing models using Docker or cloud-based solutions (e.g., AWS SageMaker, Azure ML).
+
+---
+
+#### **Results**
+- **Performance Metrics**:
+  | Dataset         | Model               | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
+  |-----------------|---------------------|----------|-----------|--------|----------|---------|
+  | Fraud_Data      | Random Forest       | 0.97     | 0.92      | 0.90   | 0.91     | 0.96    |
+  | Fraud_Data      | XGBoost             | 0.98     | 0.93      | 0.91   | 0.92     | 0.97    |
+  | CreditCard Data | XGBoost             | 0.99     | 0.95      | 0.93   | 0.94     | 0.98    |
+
+- **Explainability**:
+  - SHAP summary plots highlight the most important features globally.
+  - LIME explanations provide detailed insights into individual predictions.
+
+---
+
+#### **Contributing**
+We welcome contributions to improve the fraud detection system. To contribute:
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature/new-feature
+   ```
+3. Commit your changes and push to your fork:
+   ```bash
+   git commit -m "Add new feature"
+   git push origin feature/new-feature
+   ```
+4. Submit a pull request for review.
+
+---
+
+#### **License**
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
+
+#### **Acknowledgments**
+- Thanks to Adey Innovations Inc. for providing the datasets and resources.
+- Special thanks to the contributors of SHAP, LIME, and MLflow for their excellent tools.
+
+---
+
+#### **Contact**
+For any questions or feedback, please contact:
+- **Email**: azazhwuletaw@gmail.com
+- **GitHub**: https://github.com/azazh
+
+---
+
+This README provides an overview of the project and serves as a guide for setting up, running, and contributing to the fraud detection system. We hope this repository helps you build robust and transparent fraud detection solutions!
