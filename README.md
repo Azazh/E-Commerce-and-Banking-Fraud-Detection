@@ -1,6 +1,5 @@
-Below is a professional **README.md** file for your GitHub repository, documenting the **Task 1 - Data Analysis and Preprocessing** steps. This README provides an overview of the project, the folder structure, and instructions for running the code.
 
----
+
 
 ```markdown
 # Fraud Detection for E-Commerce and Bank Transactions
@@ -65,8 +64,9 @@ The following datasets are used in this project:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com//fraud-detection.git
-   cd fraud-detection
+   git clone https://github.com/azazh/E-Commerce-and-Banking-Fraud-Detection.git
+   cd E-Commerce-and-Banking-Fraud-Detection
+
    ```
 
 2. **Set Up the Environment**:
@@ -108,3 +108,4 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
+---
