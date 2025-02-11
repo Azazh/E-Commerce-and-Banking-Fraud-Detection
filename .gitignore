@@ -114,4 +114,5 @@ node_modules/
 .streamlit/
 
 # Config files for environments
-.env
+.envscripts/mlartifacts/
+scripts/mlartifacts/
