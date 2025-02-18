@@ -61,7 +61,7 @@ app.layout = html.Div([
      Output("fraud-percentage", "children"),
      Output("fraud-trends", "figure"),
      Output("device-browser-analysis", "figure")],
-    [Input("interval-component", "n_intervals")]  # Triggered by the interval component
+    [Input("interval-component", "n_intervals")]
 )
 def update_dashboard(n):
     stats = fetch_fraud_stats()
@@ -89,10 +89,11 @@ def update_dashboard(n):
     else:
         return ("Error", "Error", "Error", {}, {})
 
+
 # Add a callback for geolocation
 @app.callback(
     Output("fraud-geolocation", "figure"),
-    [Input("interval-component", "n_intervals")]  # Triggered by the interval component
+    [Input("interval-component", "n_intervals")]
 )
 def update_geolocation(n):
     response = requests.get("http://localhost:5000/fraud-geolocation")

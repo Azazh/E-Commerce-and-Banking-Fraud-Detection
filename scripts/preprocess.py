@@ -56,6 +56,30 @@ def preprocess_fraud_data(df):
     return df
 
 
+def merge_with_geolocation(fraud_data, ip_address_data):
+    """
+    Merges fraud_data with geolocation data by mapping IP addresses to countries.
+    """
+    # Function to map IP address to country
+    def get_country(ip_address):
+        matching_rows = ip_address_data[
+            (ip_address_data['lower_bound_ip_address'] <= ip_address) &
+            (ip_address_data['upper_bound_ip_address'] >= ip_address)
+        ]
+        return matching_rows['country'].values[0] if not matching_rows.empty else 'Unknown'
+    
+    # Ensure ip_address is numeric
+    fraud_data['ip_address'] = pd.to_numeric(fraud_data['ip_address'], errors='coerce').astype('Int64', errors='ignore')
+    
+    # Drop rows with invalid or missing IP addresses
+    fraud_data = fraud_data.dropna(subset=['ip_address'])
+    
+    # Add country column
+    fraud_data['country'] = fraud_data['ip_address'].apply(get_country)
+    
+    return fraud_data
+
+
 # Load datasets
 fraud_data = pd.read_csv('../data/Fraud_Data.csv')
 ip_address_data = pd.read_csv('../data/IpAddress_to_Country.csv')
@@ -71,12 +95,15 @@ fraud_data = clean_data(fraud_data)
 ip_address_data = clean_data(ip_address_data)
 creditcard_data = clean_data(creditcard_data)
 
+# Merge fraud_data with geolocation data
+fraud_data = merge_with_geolocation(fraud_data, ip_address_data)
+
 # Preprocess Fraud_Data.csv
 fraud_data = preprocess_fraud_data(fraud_data)
 
 # Verify the new features
-print("Preprocessed Fraud Data:")
-print(fraud_data[['hour_of_day', 'day_of_week', 'time_since_signup']].head())
+print("Preprocessed Fraud Data with Country:")
+print(fraud_data[['hour_of_day', 'day_of_week', 'time_since_signup', 'country']].head())
 
 # Save cleaned datasets
 fraud_data.to_csv('../data/cleaned_Fraud_Data.csv', index=False)
