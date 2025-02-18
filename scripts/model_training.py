@@ -17,6 +17,12 @@ X_test_fraud = pd.read_csv('../data/X_test_fraud.csv')
 y_train_fraud = pd.read_csv('../data/y_train_fraud.csv', header=None).squeeze()  # Squeeze to convert to Series
 y_test_fraud = pd.read_csv('../data/y_test_fraud.csv', header=None).squeeze()   # Squeeze to convert to Series
 
+# Load prepared datasets for CreditCard Data
+X_train_credit = pd.read_csv('../data/X_train_credit.csv')
+X_test_credit = pd.read_csv('../data/X_test_credit.csv')
+y_train_credit = pd.read_csv('../data/y_train_credit.csv', header=None).squeeze()  # Squeeze to convert to Series
+y_test_credit = pd.read_csv('../data/y_test_credit.csv', header=None).squeeze()   # Squeeze to convert to Series
+
 # Debugging: Print shapes of datasets
 print("Shapes of datasets after loading:")
 print(f"X_train_fraud shape: {X_train_fraud.shape}, y_train_fraud shape: {y_train_fraud.shape}")
@@ -42,21 +48,25 @@ models = {
 def train_and_evaluate(X_train, X_test, y_train, y_test, dataset_name):
     for model_name, model in models.items():
         print(f"Training {model_name} on {dataset_name}...")
-        
-        # Start MLflow run
-        with mlflow.start_run(run_name=f"{model_name}_{dataset_name}"):
-            try:
+
+        try:
+            # Set or create the experiment
+            experiment_name = f"{dataset_name}_Experiment"
+            mlflow.set_experiment(experiment_name)
+
+            # Start MLflow run
+            with mlflow.start_run(run_name=f"{model_name}_{dataset_name}"):
                 # Train model
                 model.fit(X_train, y_train)
-                
+
                 # Predict on test set
                 y_pred = model.predict(X_test)
                 y_prob = model.predict_proba(X_test)[:, 1]
-                
+
                 # Evaluate metrics
                 report = classification_report(y_test, y_pred, output_dict=True)
                 auc = roc_auc_score(y_test, y_prob)
-                
+
                 # Log metrics to MLflow
                 mlflow.log_param("model", model_name)
                 mlflow.log_metric("accuracy", report['accuracy'])
@@ -64,15 +74,16 @@ def train_and_evaluate(X_train, X_test, y_train, y_test, dataset_name):
                 mlflow.log_metric("recall", report['1']['recall'])
                 mlflow.log_metric("f1_score", report['1']['f1-score'])
                 mlflow.log_metric("roc_auc", auc)
-                
+
                 # Log model
                 mlflow.sklearn.log_model(model, f"{model_name}_model")
-                
+
                 # Save model locally
                 joblib.dump(model, f'../models/{model_name}_{dataset_name}.joblib')
-            
-            except Exception as e:
-                print(f"Error during training {model_name}: {e}")
+
+        except Exception as e:
+            print(f"Error during training {model_name}: {e}")
+
 
 # Train models for Fraud_Data
 train_and_evaluate(X_train_fraud, X_test_fraud, y_train_fraud, y_test_fraud, 'Fraud_Data')
